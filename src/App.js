@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
+import AppContent from './components/AppContent';
+import AppHeader from './components/AppHeader';
+import PageTitle from './components/PageTitle';
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const [status, setStatus] = useState('incomplete');
+  const [item, setItem] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <PageTitle>TODO LIST</PageTitle>
+        <div className="app__wrapper">
+          <AppHeader title={title} modalOpen={modalOpen} setModalOpen={setModalOpen} setTitle={setTitle} item={item} setItem={setItem} status={status} setStatus={setStatus} />
+          <AppContent title={title} modalOpen={modalOpen} setModalOpen={setModalOpen} setTitle={setTitle} item={item} setItem={setItem} status={status} setStatus={setStatus} />
+        </div>
+      </div>
+      <Toaster position="bottom-right" />
+    </>
   );
 }
 
